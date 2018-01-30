@@ -12,6 +12,9 @@ import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GlobalDataHandler } from "./shared/models/global-data-handler";
 import { AuthenticationService } from "./shared/services/auth.service";
+import { MinLengthDirective, IsEmailDirective, IsPasswordDirective } from "./util/input.directives";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { DashBoardPageComponent } from "./pages/dashboard-page/dashboard-page.component";
 
 @NgModule({
     bootstrap: [
@@ -23,6 +26,8 @@ import { AuthenticationService } from "./shared/services/auth.service";
         AppRoutingModule,
         NativeScriptFormsModule,
         NativeScriptHttpModule,
+        ReactiveFormsModule,
+        FormsModule,
         TNSFontIconModule.forRoot({
             'fa': './assets/font-awesome.css',
         })
@@ -31,7 +36,11 @@ import { AuthenticationService } from "./shared/services/auth.service";
         AppComponent,
         LoginComponent,
         RegisterComponent,
-        TutorialComponent
+        TutorialComponent,
+        MinLengthDirective,
+        IsEmailDirective,
+        IsPasswordDirective,
+        DashBoardPageComponent
     ],
     providers: [
         GlobalDataHandler,

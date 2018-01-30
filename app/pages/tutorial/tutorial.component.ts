@@ -60,7 +60,7 @@ export class TutorialComponent implements OnInit {
     }
 
     skip() {
-        setBoolean(Constant.tutorialShown, true);
+        setBoolean(Constant.TUTORIAL_SHOWN, true);
         this.router.navigate(["/login"], { clearHistory: true });
     }
 

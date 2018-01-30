@@ -4,7 +4,10 @@
 	"readme": "NativeScript Application",
 	"repository": "<fill-your-repository-here>",
 	"nativescript": {
-		"id": "io.aloketewary.bloodcontact"
+		"id": "io.aloketewary.bloodcontact",
+		"tns-android": {
+			"version": "3.4.1"
+		}
 	},
 	"dependencies": {
 		"@angular/animations": "~5.2.0",

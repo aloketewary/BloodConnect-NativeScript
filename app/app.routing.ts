@@ -1,3 +1,4 @@
+import { DashBoardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 import { NgModule } from "@angular/core";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { Routes } from "@angular/router";
@@ -10,6 +11,12 @@ const routes: Routes = [
     { path: "login", component: LoginComponent },
     { path: "register", component: RegisterComponent },
     { path: "tutorial", component: TutorialComponent },
+    {
+        path: "dashboard",
+        children: [
+            { path: '', component: DashBoardPageComponent }
+        ]
+    }
 ];
 
 @NgModule({
