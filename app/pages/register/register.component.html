@@ -3,15 +3,34 @@
 </ActionBar>
 <ScrollView>
     <StackLayout class="page p-t-15">
-        
-        <TextField class="m-t-10 m-b-10 m-l-15 m-r-15" hint="Email Address" keyboardType="email" autocorrect="false" autocapitalization="none"
-            [(ngModel)]="user.email"></TextField>
-        <TextField class="m-t-10 m-b-10 m-l-15 m-r-15" hint="Password" secure="true" autocorrect="false" autocapitalization="none"
-            [(ngModel)]="user.password"></TextField>
-        <TextField class="m-t-10 m-b-10 m-l-15 m-r-15" hint="Confirm Password" secure="true" autocorrect="false" autocapitalization="none"
-            [(ngModel)]="passwordConfirm"></TextField>
-
-        <Button class="btn btn-primary" text="SIGN UP" (tap)="onSignupButtonTap()"></Button>
-        <Button class="btn btn-outline m-t--10" [nsRouterLink]="['/login']" text="Back to Login"></Button>
+        <Image src="~/assets/images/text-logo.png" class="m-b-20 logo"></Image>
+        <TextField class="m-t-10 m-l-15 m-r-15" hint="Name" keyboardType="email" autocorrect="false" autocapitalization="true"
+            [(ngModel)]="user.fullName" #name="ngModel" required></TextField>
+        <StackLayout *ngIf="name.errors && (name.dirty || name.touched)">
+            <Label *ngIf="name.errors.required" class="m-b-10 m-l-15 required" text=" name is required"></Label>
+        </StackLayout>
+        <TextField class="m-t-10 m-l-15 m-r-15" hint="Email Address" keyboardType="email" autocorrect="false" autocapitalization="none"
+            [(ngModel)]="user.email" #email="ngModel" email required></TextField>
+        <StackLayout *ngIf="email.errors && (email.dirty || email.touched)">
+            <Label *ngIf="email.errors.required" class="m-b-10 m-l-15 required" text=" email is required"></Label>
+            <Label *ngIf="email.errors.email && !email.errors.required" class="m-b-10 m-l-15 required" text=" enter valid email id"></Label>
+        </StackLayout>
+        <TextField class="m-t-10 m-l-15 m-r-15" hint="Password" secure="true" autocorrect="false" autocapitalization="none"
+            [(ngModel)]="user.password" #pwd="ngModel" minlength="6" password required></TextField>
+        <StackLayout *ngIf="pwd.errors && (pwd.dirty || pwd.touched)">
+            <Label *ngIf="pwd.errors.required" class="m-b-10 m-l-15 required" text=" password is required"></Label>
+            <Label *ngIf="pwd.errors.password && !pwd.errors.required && !pwd.errors.minlength" class="m-b-10 m-l-15 required" text=" must contain at least one digit/lowercase/uppercase letter"></Label>
+            <Label *ngIf="pwd.errors.minlength && !pwd.errors.required" class="m-b-10 m-l-15 required" text=" must be at least six characters long"></Label>
+        </StackLayout>
+        <TextField class="m-t-10 m-l-15 m-r-15" hint="Confirm Password" secure="true" autocorrect="false" autocapitalization="none"
+            [(ngModel)]="passwordConfirm" #cPassword="ngModel" minlength="6" password required></TextField>
+        <StackLayout *ngIf="cPassword.errors && (cPassword.dirty || cPassword.touched)">
+            <Label *ngIf="cPassword.errors.required" class="m-b-10 m-l-15 required" text=" confirm password is required"></Label>
+            <Label *ngIf="cPassword.errors.password && !cPassword.errors.required && !cPassword.errors.minlength" class="m-b-10 m-l-15 required" text=" must contain at least one digit/lowercase/uppercase letter"></Label>
+            <Label *ngIf="cPassword.errors.minlength && !cPassword.errors.required" class="m-b-10 m-l-15 required" text=" must be at least six characters long"></Label>
+        </StackLayout>
+        <Button class="btn btn-primary" [isEnabled]="name.valid && email.valid && pwd.valid && cPassword.valid" text="SIGN UP"
+            (tap)="onSignupButtonTap()"></Button>
+        <Button class="btn btn-outline m-t--10" (tap)="gotoLogin()" text="Back to Login"></Button>
     </StackLayout>
 </ScrollView>

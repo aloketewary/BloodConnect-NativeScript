@@ -1,3 +1,4 @@
+import { Constant } from './../../util/constant';
 import { User } from './../../shared/models/user.model';
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { connectionType, getConnectionType } from "connectivity";
@@ -15,6 +16,7 @@ import { RouterExtensions } from "nativescript-angular/router/router-extensions"
 import { AuthenticationService } from '../../shared/services/auth.service';
 const frameModule = require("ui/frame");
 const application = require("application");
+import { setBoolean, setString } from 'application-settings';
 
 @Component({
     selector: "Login",
@@ -27,7 +29,10 @@ export class LoginComponent implements OnInit {
     isAuthenticating = false;
     snackbar: SnackBar;
     @ViewChild("formControls") formControls: ElementRef;
+    @ViewChild("email") email: ElementRef;
+    @ViewChild("password") password: ElementRef;
     private feedback: Feedback;
+    public userProgressValue: number;
 
     activity = application.android.startActivity ||
         application.android.foregroundActivity ||
@@ -46,7 +51,12 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // this.page.actionBarHidden = true;
+        this.page.actionBarHidden = true;
+        this.userProgressValue = 250;
+
+        setInterval(() => {
+            this.userProgressValue += 1;
+        }, 900);
     }
 
     onLoginWithSocialProviderButtonTap(loginProvider: string): void {
@@ -76,11 +86,7 @@ export class LoginComponent implements OnInit {
     }
 
     onSigninButtonTap(): void {
-        if (!this.isValidEmail(this.user.email)) {
-            alert("Enter a valid email address.");
-            return;
-        }
-        // this.isAuthenticating = true;
+        this.isAuthenticating = true;
         if (getConnectionType() === connectionType.none) {
             this.feedback.error({
                 title: "No Internet Connection!",
@@ -93,11 +99,18 @@ export class LoginComponent implements OnInit {
         }
         this.auth.login(this.user.email, this.user.password).then((res: any) => {
             if (res.uid) {
-                TNSFancyAlert.showSuccess("Login Error",
-                    "Requires an internet connection to log in.", "Dismiss");
+                this.feedback.success({
+                    title: "Welcome " + res.email,
+                    titleColor: new Color("black"),
+                });
+                setBoolean(Constant.IS_LOGGEDIN, true);
+                setString(Constant.LOGGEDIN_USER_EMAIL, res.email);
+                this.router.navigate(["/dashboard"], {clearHistory: true});
             } else {
-                TNSFancyAlert.showInfo("Login Error",
-                    "Requires an internet connection to log in.", "Dismiss");
+                this.feedback.error({
+                    message: "Logging in the user failed, cross check email and password",
+                    messageColor: new Color("black"),
+                });
                 this.isAuthenticating = false;
             }
         });
@@ -138,4 +151,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(["/register"], { clearHistory: true });
     }
 
+    getUserProgressText() {
+        return 'Already ' + this.userProgressValue + ' registered and counting more...';
+    }
 }

@@ -26,3 +26,21 @@
  ActionBar .action-bar-title {
      horizontal-align: center;
  }
+
+ .logo {
+     height: 110px;
+ }
+
+$sides: (top, bottom, left, right); // Leave this variable alone
+
+@for $i from -100 through -1 {
+  @each $side in $sides {
+    .m-#{str-slice($side, 0, 1)}-#{$i} {
+      margin-#{$side}: #{$i}px !important;
+    }
+  
+    .p-#{str-slice($side, 0, 1)}-#{$i} {
+      padding-#{$side}: #{$i}px !important;
+    }
+  }
+}

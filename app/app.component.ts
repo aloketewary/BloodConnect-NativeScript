@@ -22,13 +22,22 @@ firebase.init({}).then(instance => {
 export class AppComponent {
 
     constructor(private globalDP: GlobalDataHandler, private router: RouterExtensions) {
-        if (getBoolean(Constant.tutorialShown, false)) {
-            this.router.navigate(["/login"], {
-                clearHistory: true, transition: {
-                    name: 'fade',
-                    duration: 1000
-                }
-            });
+        if (getBoolean(Constant.TUTORIAL_SHOWN, false)) {
+            if (getBoolean(Constant.IS_LOGGEDIN, false)) {
+                this.router.navigate(["/dashboard"], {
+                    clearHistory: true, transition: {
+                        name: 'fade',
+                        duration: 1000
+                    }
+                });
+            } else {
+                this.router.navigate(["/login"], {
+                    clearHistory: true, transition: {
+                        name: 'fade',
+                        duration: 1000
+                    }
+                });
+            }
         }
         (new Sqlite("bloodcontact.db")).then(db => {
             this.globalDP.database = db;

@@ -18,7 +18,7 @@ export class AuthenticationService {
             }
         })
             .then(result => {
-                console.log(result + '  this is >>>>>>>>>>>>');
+                console.log(JSON.stringify(result) + '  this is >>>>>>>>>>>>');
                 return result;
             })
             .catch(error => {

@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
     private feedback: Feedback;
 
     constructor(
+        private page: Page,
         private routerExt: RouterExtensions,
         private authService: AuthenticationService
     ) {
@@ -30,7 +31,7 @@ export class RegisterComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
+        this.page.actionBarHidden = true;
     }
 
     onSignupWithSocialProviderButtonTap(): void {
@@ -42,8 +43,16 @@ export class RegisterComponent implements OnInit {
             alert("Enter a valid email address.");
             return;
         }
-        if (this.user.password !== this.passwordConfirm || this.user.password === null || this.passwordConfirm === undefined) {
+        if (this.user.password !== this.passwordConfirm) {
             alert("Password mismatched...");
+            return;
+        }
+        if (this.user.password === undefined || this.passwordConfirm === undefined) {
+            alert("Password required...");
+            return;
+        }
+        if (!this.checkPassword(this.user.password)) {
+            alert("Password must contain at least one digit/lowercase/uppercase letter and be at least six characters long");
             return;
         }
         if (getConnectionType() === connectionType.none) {
@@ -72,10 +81,17 @@ export class RegisterComponent implements OnInit {
     }
 
     gotoLogin() {
-        this.routerExt.navigate(["/login"], { clearHistory: true });
+        this.routerExt.navigate(['/login'], { clearHistory: true });
     }
 
     isValidEmail(email) {
         return validator.validate(email);
+    }
+
+    checkPassword(str) {
+        // at least one number, one lowercase and one uppercase letter
+        // at least six characters
+        var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+        return re.test(str);
     }
 }
