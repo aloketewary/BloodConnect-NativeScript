@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "921011904224",
+    "firebase_url": "https://bloodcontact-40729.firebaseio.com",
+    "project_id": "bloodcontact-40729",
+    "storage_bucket": "bloodcontact-40729.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921011904224:android:a8d02a11b768288d",
+        "android_client_info": {
+          "package_name": "io.aloketewary.bloodcontact"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "921011904224-1sdfgv1t02c6j51u8jn1uep5kk7rhvf8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFX6uhRUL6xvYev-Vl7Qv0CzGfz184sKk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

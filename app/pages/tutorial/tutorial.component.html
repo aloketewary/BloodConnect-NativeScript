@@ -1,0 +1,20 @@
+<StackLayout>
+    <SlideContainer id="slides" pageIndicators="true" angular="true" #slides>
+        <Slide class="slide-1" (swipe)="onSwipe($event)" [@slideInOut]="iconState">
+            <Label class="tutorial-icon fa" [text]="'fa-medkit' | fonticon"></Label>
+            <Label class="header-label" text="Help others"></Label>
+            <Label class="para-label" text="your help can bring life to someone."></Label>
+        </Slide>
+        <Slide class="slide-2" (swipe)="onSwipe($event)" [@slideInOut]="iconState">
+            <Label class="tutorial-icon fa" [text]="'fa-tint' | fonticon"></Label>
+            <Label class="header-label" text="Donate blood"></Label>
+            <Label class="para-label" text="donate blood atleast one time in a year"></Label>
+        </Slide>
+        <Slide class="slide-3" (swipe)="onSwipe($event)" [@slideInOut]="iconState">
+            <Label class="tutorial-icon fa" [text]="'fa-heartbeat' | fonticon"></Label>
+            <Label class="header-label" text="You can save"></Label>
+            <Label class="para-label" text="every year many people dies without blood donor"></Label>
+        </Slide>
+        <Button class="btn-alt-outline" (tap)="skip()" [text]="gotitText"></Button>
+    </SlideContainer>
+</StackLayout>

@@ -1,0 +1,52 @@
+@import '~nativescript-theme-core/scss/light';
+@import 'app-helpers';
+// Import app variables
+@import 'app-variables';
+// Import the theme’s main ruleset - both index and platform specific.
+@import '~nativescript-theme-core/scss/index';
+@import '~nativescript-theme-core/scss/platforms/index.android';
+// Import common styles
+@import 'app-common';
+// Place any CSS rules you want to apply only on Android here
+ActionBar .fa {
+    padding: 40px;
+}
+
+.social-signin {
+    margin-bottom: 20px;
+    width: 220px;
+    height: 36px;
+    border: none;
+    border-radius: 2px;
+    color: #FFF;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    transition: 0.2s ease;
+    cursor: pointer;
+    &:hover,
+     :focus {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        transition: 0.2s ease;
+    }
+    &:active {
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+        transition: 0.2s ease;
+    }
+    &.twitter {
+        background: #55ACEE;
+    }
+}
+
+.google {
+    background: #DD4B39;
+    color: #FFF;
+}
+
+.facebook {
+    background: #32508E;
+    color: #FFF;
+}
+
+.m-t--10 {
+    margin-top: -10px !important;
+}
