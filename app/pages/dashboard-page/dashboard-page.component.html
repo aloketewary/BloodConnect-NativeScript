@@ -1,5 +1,15 @@
 <ActionBar class="action-bar">
-    <Label class="action-bar-title" text="DashBoard"></Label>
+    <NavigationButton ios:visibility="collapsed" icon="res://ic_menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Home"></Label>
 </ActionBar>
-<ScrollView>
-</ScrollView>
+<RadSideDrawer #drawer showOverNavigation="true" [drawerTransition]="sideDrawerTransition">
+    <StackLayout tkDrawerContent>
+        <SideDrawer [selectedPage]="'Home'"></SideDrawer>
+    </StackLayout>
+    <GridLayout class="page page-content" tkMainContent>
+        <Label class="page-icon fa" text="&#xf015;"></Label>
+        <Label class="page-placeholder" text="<!-- Page content goes here -->"></Label>
+    </GridLayout>
+</RadSideDrawer>

@@ -1,3 +1,4 @@
+import { SideDrawerItemComponent } from './shared/components/side-drawer-item/side-drawer-item.component';
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { AppRoutingModule } from "./app.routing";
@@ -15,6 +16,8 @@ import { AuthenticationService } from "./shared/services/auth.service";
 import { MinLengthDirective, IsEmailDirective, IsPasswordDirective } from "./util/input.directives";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { DashBoardPageComponent } from "./pages/dashboard-page/dashboard-page.component";
+import { NativeScriptUISideDrawerModule } from "nativescript-pro-ui/sidedrawer/angular";
+import { SideDrawerComponent } from "./shared/components/side-drawer/side-drawer.component";
 
 @NgModule({
     bootstrap: [
@@ -30,7 +33,8 @@ import { DashBoardPageComponent } from "./pages/dashboard-page/dashboard-page.co
         FormsModule,
         TNSFontIconModule.forRoot({
             'fa': './assets/font-awesome.css',
-        })
+        }),
+        NativeScriptUISideDrawerModule
     ],
     declarations: [
         AppComponent,
@@ -40,7 +44,9 @@ import { DashBoardPageComponent } from "./pages/dashboard-page/dashboard-page.co
         MinLengthDirective,
         IsEmailDirective,
         IsPasswordDirective,
-        DashBoardPageComponent
+        DashBoardPageComponent,
+        SideDrawerComponent,
+        SideDrawerItemComponent
     ],
     providers: [
         GlobalDataHandler,

@@ -3,44 +3,95 @@
 // Font icon class
 .fa {
     font-family: "FontAwesome";
- }
- // Common page class
- .page-content {
-     .page-placeholder {
-         color: $page-icon-color;
-         font-size: $page-content-placeholder-font-size;
-         vertical-align: center;
-         horizontal-align: center;
-     }
- 
-     .page-icon {
-         font-size: 72;
-         vertical-align: top;
-         horizontal-align: center;
-         color: $page-icon-color;
-         margin-top: 20%;
-     }
- }
- 
- //Action bar
- ActionBar .action-bar-title {
-     horizontal-align: center;
- }
+} // Common page class
+.page-content {
+    .page-placeholder {
+        color: $page-icon-color;
+        font-size: $page-content-placeholder-font-size;
+        vertical-align: center;
+        horizontal-align: center;
+    }
+    .page-icon {
+        font-size: 72;
+        vertical-align: top;
+        horizontal-align: center;
+        color: $page-icon-color;
+        margin-top: 20%;
+    }
+} //Action bar
+ActionBar .action-bar-title {
+    horizontal-align: center;
+}
 
- .logo {
-     height: 110px;
- }
+.logo {
+    height: 110px;
+}
 
 $sides: (top, bottom, left, right); // Leave this variable alone
-
 @for $i from -100 through -1 {
-  @each $side in $sides {
-    .m-#{str-slice($side, 0, 1)}-#{$i} {
-      margin-#{$side}: #{$i}px !important;
+    @each $side in $sides {
+        .m-#{str-slice($side, 0, 1)}-#{$i} {
+            margin-#{$side}: #{$i}px !important;
+        }
+        .p-#{str-slice($side, 0, 1)}-#{$i} {
+            padding-#{$side}: #{$i}px !important;
+        }
     }
-  
-    .p-#{str-slice($side, 0, 1)}-#{$i} {
-      padding-#{$side}: #{$i}px !important;
+}
+
+
+/*****************************************************
+** Side drawer css only for common device if use individual add in os specific
+******************************************************/
+
+// Drawer navigation custom styles
+$sidedrawer-header-image-size: 60;
+$sidedrawer-header-image-offset-top: 20;
+$sidedrawer-header-image-offset-bottom: 5;
+.sidedrawer {
+    &.sidedrawer-left {
+        .sidedrawer-header-image {
+            color: $background-dark;
+            height: $sidedrawer-header-image-size;
+            width: $sidedrawer-header-image-size;
+            font-size: $sidedrawer-header-image-size;
+            padding: 0;
+            margin-bottom: $sidedrawer-header-image-offset-bottom;
+            margin-top: $sidedrawer-header-image-offset-top;
+        }
+        .footnote {
+            color: rgba($ab-color, 0.5);
+        }
     }
-  }
+    .sidedrawer-header {
+        background-color: $ab-background;
+        .sidedrawer-header-brand {
+            color: $ab-color;
+        }
+    }
+    .sidedrawer-content {
+        background-color: $side-drawer-background;
+    }
+}
+
+// Side drawer list 
+$sidedrawer-list-item-offset-left: 15;
+$sidedrawer-list-icon-offset: 10;
+$sidedrawer-list-icon-size: 20;
+.sidedrawer-list-item {
+    padding-left: $sidedrawer-list-item-offset-left;
+    Label {
+        vertical-align: center;
+        color: $blue-dark;
+    }
+    .fa {
+        width: $sidedrawer-list-icon-size;
+        margin-right: $sidedrawer-list-icon-offset;
+    }
+    &.selected {
+        background-color: $item-active-background;
+        Label {
+            color: $item-active-color;
+        }
+    }
 }

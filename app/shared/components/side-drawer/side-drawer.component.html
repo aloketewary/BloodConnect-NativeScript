@@ -1,0 +1,15 @@
+<GridLayout rows="auto, *" class="sidedrawer sidedrawer-left">
+    <StackLayout row="0" class="sidedrawer-header">
+        <Label class="sidedrawer-header-image fa" text="&#xf2bd;"></Label>
+        <Label class="sidedrawer-header-brand" [text]="userProfile.username"></Label>
+        <Label class="footnote" [text]="userProfile.emailId"></Label>
+    </StackLayout>
+
+    <ScrollView row="1">
+        <StackLayout class="sidedrawer-content">
+            <SideDrawerItem title="Home" route="/home" icon="&#xf015;" [isSelected]="isPageSelected('Home')">
+            </SideDrawerItem>
+            <!-- <StackLayout class="hr-light"></StackLayout> -->
+        </StackLayout>
+    </ScrollView>
+</GridLayout>
